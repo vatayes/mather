@@ -24,18 +24,22 @@ var Graphic={
 	},
 	drawSVG:function(graphType,v,ID,DOM){
 		var g=graphType,gl=g.replace(/.+[/]/,''),d;
-console.log('g=',g);
+consolelog('g=',g);
 		if(g=='latex'){
 			//katex.render(v||$(ID?'#'+ID:DOM).html(),DOM||$('#'+ID)[0]);
 			
 
 			
-		}else if(/echarts/.test(g)){
+		}else if(/echarts/i.test(g)){
 
 			var id=ID||$(DOM).attr('id'),D=$('#'+id),
-			o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
-
-			D.append(DCtv('echart0" style="width:'+D.width()+'px;height:'+(D.height()||600)+'px',''));
+			//o=isObj(v)?v:jSon(fnv(v[0]=='{'?v:'{'+v+'}'));
+			o=isObj(v)?v:eval(fnv(v[0]=='{'?v:'{'+v+'}'));
+			if(D.length<1){
+				D=$(DOM)
+			}
+		
+			D.append(DCtv('echart0" style="width:'+(D.width()||600)+'px;height:'+(D.height()||600)+'px',''));
 consolelog(D.html());
 			var myChart = echarts.init(D.children().last()[0]);
 
@@ -57,7 +61,8 @@ consolelog(D.html());
 						if(/^[a-z]+\(/i.test(ivi)){
 							x+=ivi
 						
-						}else{				
+						}else{
+
 							if(g.indexOf('/Shape/')>0 || g.indexOf('/Curve/')>0){
 								var egs=$('.inputTip[data-uri*="Plane Coordinate System"] .eg');
 								
@@ -77,12 +82,12 @@ consolelog(D.html());
 									gl='Arc';
 									
 									if(g.indexOf('/Shape/')>0){
-										egs=$('.inputTip[data-uri*="Plane Coordinate System/Shape"] .eg')
+										egs=$('.inputTip[data-uri*="Plane Coordinate System.Math/Shape"] .eg')
 									}
 									
 								}
 								
-					console.log('gl=',gl);			
+
 								x+="shape('','"+gl+"','','";
 								if(/path/i.test(gl)){
 								
@@ -96,11 +101,11 @@ consolelog(D.html());
 
 									var eg=split(egi.attr('data-eg')||'',/[a-z\d]+=/g);
 							
-							console.log(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
-									if(eg[0].length==1 && / /.test(ivi)){
+							consolelog(gl,'eg=',eg,'ivil=',ivil,'ivi=',ivi);
+									if(eg[0] && eg[0].length==1 && / /.test(ivi)){
 										ivi='"'+ivi+'"';
 										x+=eg[0]+ivi;
-									}else{
+									}else if(eg[0]){
 										x+=snake([eg[0].slice(0,ivil),(' '+ivi).replace(/ /g,'  1').split(' 1')]).join('').trim();
 									}
 								}
@@ -127,7 +132,7 @@ consolelog(D.html());
 							
 							
 						}
-console.log(x);
+consolelog(x);
 						str+=eval(x);
 					}
 				}

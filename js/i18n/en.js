@@ -12,19 +12,23 @@ lang['en']={
 	'Bw':'Border Width',
 	'Fgc':'FG Color',
 	'bg':'Background',
-	'Bgc':'BG Color',
-	'BGC':'BG Color',
+	'Bgc':'Background Color',
+	'BGC':'Background Color',
 	'Opts':'Option',
 	'Opa':'Opacity',
 	'Backvisi':'Back Visible',
+	'Del':'Delete',
+
+
+
 	'fonT':'Font',
-		
-	
+	'Level-1 Discipline':'Level-1 Discipline',
+	'Level-2 Discipline':'Level-2 Discipline',
 	
 	'nodesXY':'Cartesian Nodes',
 	'nodesPolar':'Polar Nodes',
 		
-	'sbson':'Unicode',
+	'sbson':'Unicode Character',
 	'funcson':'Function',
 	'strucon':'Structure',
 	'Condon':'Condition',
@@ -33,20 +37,19 @@ lang['en']={
 	'funcsontip':"@{clickWithShift}get function name without () followed",
 	'strucontip':"@{clickWithShift}get JS code@{notLaTeX}",
 	'tasktip':"@{clickWithShift}input the default expression",
-	'copytip':"@{clickWithShift}@{copy2Canvas}",
-	'savetip':"@{clickWithShift}download txt",
-	
+	'copytip':"click to copy it to the clipboard",
+	'showEditip':'Input text, URL, or drag & drop file(text file, QRcode Image, Math Formula Image) here',
+
 	'copy2Canvas':'copy it to Canvas',
 	'clickWithShift':'click with Shift key to ',
 	'notLaTeX':' instead of LaTeX code',
-	
-	
+
 	'donatip':'needs your help!',
-	'donatip0':'Anything immortal has an intrinsic nature of Mathematics.',
+	'donatip0':'For the Mathematics we must know and we will know!',
 	'Accnum':'Account Number',
 	'copiedtip':'Copied to the clipboard',
 	'copied2Canvastip':'Copied to the Canvas',
-	
+	'resetAlert':'Sure to reset?',
 	
 	
 	'zzllrr Mather':'zzllrr Mather',
@@ -70,7 +73,7 @@ lang['en']={
 	
 	"s":"Space",
 	"11":"History of @0",
-	"14": "@2 Logic and @2 Basis",
+	"14": "Math Logic and Math Basis",
 	"1410": "Deductive Logic",
 	"1420": "@7 of Proof",
 	"1430": "Recursion @7",

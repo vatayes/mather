@@ -12,7 +12,7 @@
 .scbox{white-space: nowrap}
 .hidden{display:none}
 
-.opac0:not(:hover){
+.opac0:not(:hover), .opac:not(:hover) .hid, .phantom{
 	opacity:0
 }
 
@@ -20,8 +20,47 @@
 	opacity:0.5
 }
 
-.opac:not(:hover) .hid{
-	opacity:0
+
+.logo,#splash,.hue{
+	animation: hue 12s linear infinite;
+
+}
+#inputTools{
+	background:rgba(50, 205, 50, 0.5);
+}
+
+
+@media screen and (max-width:800px){
+	#hotkey, #API, .subtab th:nth-child(3)~th, .subtab td:nth-child(3)~td{display:none;}
+	
+	/* #input0Tip{margin-top: 2rem;}
+	*/
+	.toolTip{
+		position: fixed;
+		left:2px;
+		top:2px;
+	}
+	
+	.editorText {
+		width: 70%;
+		height: 180px;
+	}
+
+	input[type="number"]{
+		max-width: 2.6rem;
+	}
+}
+
+
+@media screen and (min-width:800px){
+	.editorText {
+		width:50%;
+		height:200px;
+	}
+
+	input[type="number"]{
+		max-width: 3rem;
+	}
 }
 
 @media print{
@@ -31,7 +70,7 @@
   h1 {page-break-after: always;}
   p {page-break-inside: avoid;}
   
-  #panel > *, #input0Preview ~ *,#iTextMain ~ *{
+  #panel, #input0Preview ~ *,#iTextMain ~ *{
   	display:none
   }
   #iTextMain{
@@ -41,15 +80,13 @@
   	border:none;
   }
 }
-.wiki,.wiki > tbody > tr > td{
-	border-color:gainsboro
-}
 
-.inputTip,.subtools, #outputOpt,#nav{
-	font-size:12px
+
+.inputTip,.subtools, #outputOpt{
+	font-size:1.1rem
 }
 .subtools summary{
-	font-size:16px
+	font-size:1.2rem
 }
 
 .large{
@@ -89,33 +126,58 @@ sup,sub,.small{
 
 
 
-#oHTML tr:hover{
+blockquote{
+    padding:0 10px;
+    border-left: solid 6px #ff5400;
+    margin-left: 0px;
+    background-color: rgba(242,97,9,.1);
+    border-radius: 10px;
+}
+code, pre{
+    background: rgba(50, 205, 50, 0.1);
+    border-radius: 5px;
+    padding:5px
+}
+
+
+
+#oHTML tbody tr:hover{
 	text-shadow: 1px 1px 3px rgba(0,0,0,.2);
 }
 #wiki details[open] > summary, #wiki>span{
     color: limegreen;
 }
 
-.hmulti option{display:inline}
+.hmulti option{display:inline-block;width:2rem}
 .hmulti {
-    overflow: auto;
+    overflow: hidden;
 }
 #zMather select{
 	border-style:none none solid none;
 	border-width:1px;
 }
 
-.gainsboro{
-	color:gainsboro
+body.day, .day textarea{
+	color:black;
 }
+.gainsboro, body.night, .night textarea{
+	color:gainsboro;
+}
+body.night{
+	background-color: black;
+}
+body.day{
+	background-color:white;
+}
+
 .prov{
 	color:dimgray
 }
-.red,.Clear{
-	color:red
+.red,.Clear:hover, .Del:hover{
+	color:red;
 }
 
-.Clear, .btnSim{
+.btnSim{
 	border: 0;
     background: none;
 
@@ -125,18 +187,17 @@ sup,sub,.small{
 	color:black
 }
 .inputTip,.notes{
-	color:gray
+	color:gray;
+	border: solid 1px;
+    padding: 4px;
 }
 
 #panel{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    z-index: 20001;
+	z-index: 20001;
 }
 
 
-.fdetail:hover summary,.task,.taskname{
+.fdetail:hover summary,.task,.taskname,.Mele:hover{
 	color:white;
 }
 .taskname{
@@ -156,34 +217,63 @@ sup,sub,.small{
 	user-select:none;
 	display:inline-block
 }
-summary,#menu{
+summary{
 	user-select:none;
+	padding: 5px;
 }
 
+#input0Preview{
+	min-height:185px;
+}
+#previewTool{
+	padding: 10px 2px;
+}
 .collapse{border-collapse: collapse}
 
-.edit > thead th{
-	border:0;
-	padding-bottom: 15px;
-}
 
-.bds{
+
+body:not(.night) .bds:not(.Clear){
 	border: solid black 1px;
 }
 
-.bdr{
-	border-right: outset black 1px;
+body:not(.night) .bdr{
+	border-right: solid black 1px;
 }
 
-.bdl{
-	border-left: outset black 1px;
+body:not(.night) .bdl{
+	border-left: solid black 1px;
 }
 
-.bdt{
-	border-top: outset black 1px;
+body:not(.night) .bdt{
+	border-top: solid black 1px;
 }
 
-.inblk:not(.notm),.vam{
+body:not(.night) .bdb{
+	border-bottom: solid black 1px;
+}
+
+.night .bds:not(.Clear){
+	border: solid gainsboro 1px;
+}
+
+.night .bdr{
+	border-right: solid gainsboro 1px;
+}
+
+.night .bdl{
+	border-left: solid gainsboro 1px;
+}
+
+.night .bdt{
+	border-top: solid gainsboro 1px;
+}
+
+.night .bdb{
+	border-bottom: solid gainsboro 1px;
+}
+
+
+.inblk:not(.notm),.vam, #bar, #bar span, textarea,.abscenter > *{
 	vertical-align: middle;
 }
 .vat{
@@ -222,7 +312,10 @@ li,#wiki{
 
 }
 
-
+#swap{
+	text-shadow: 1px 1px 1px #666;
+	color: white;
+}
 
 .bdt[data-mt]:before{
     content: attr(data-mt);
@@ -243,12 +336,12 @@ li,#wiki{
 }
 
 .notes:before{
-    content: "注意：";
+    content: "NOTES: ";
     margin-left: 2px;
 }
 
 .unknown:before{
-    content: "未知：";
+    content: "UNKNOWN: ";
     margin-left: 2px;
 }
 .prov:before{
@@ -260,15 +353,10 @@ li,#wiki{
     margin-right: 2px;
 }
 
+.bd0{
+	border:0
+}
 
-.wiki:not(.bd0){
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 5px;
-}
-.wiki:not(.bd0){
-	min-width:25px;
-}
 
 
 
@@ -302,6 +390,11 @@ input[type=text],#wiki>span,.brad{
 	border-style:ridge;
 }
 
+.ground > div:not(.tasks){
+	border-radius:10px;
+}
+
+
 
 .bdtdash{
 	border-top:dashed black 1px;
@@ -329,42 +422,6 @@ input[type=text],#wiki>span,.brad{
 	border-right:dotted black 1px;
 }
 
-.wiki>.cnt2{
-    counter-reset: cnt 1;
-}
-.wiki>.cnt1{
-    counter-reset: cnt 0;
-}
-.wiki>.cnt0{
-    counter-reset: cnt -1;
-}
-.wiki>.cnt_1{
-    counter-reset: cnt -2;
-}
-.wiki>.cnt2>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt1>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt0>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-}
-.wiki>.cnt_1>tr:before{
-	content: counter(cnt);
-	counter-increment: cnt;
-
-}
-.wiki>tbody>tr:before{
-    text-shadow: 1px 1px 1px #666;
-    color: gray;
-}
-.wiki>thead.cnt>tr:before{
-	content: "";
-}
 
 .subtools details[open]{
 	border: solid 1px;
@@ -385,16 +442,27 @@ input[type=text],#wiki>span,.brad{
 }
 
 
-#wiki summary,#wiki>span,.wiki > tbody > tr> td, .pd2,.scbox,.mfx{
+.pd2,.scbox,.mfx, #tileToolCap > details{
 	padding:2px
 }
 .pd10{
 	padding:10px
 }
+
+.pd20p{
+	padding:0 20%;
+}
+
+.mg20p{
+	margin:0 20%;
+}
+.mg10p{
+	margin:0 10%;
+}
 .mg10{
 	margin:10px
 }
-.mg20{
+.mg20, .subtabheads{
 	margin:20px
 }
 .mgr10{
@@ -436,20 +504,18 @@ input[type=text],#wiki>span,.brad{
 #numStart{
 	max-width:45px;
 }
-
-#input0,#input1,#input2{
-	min-width:25%;
+input[type="file"]{
+	max-width: 100px;
 }
+
+
 
 #input0Tip,#input1Tip{
 	max-width:74%;
 	max-height:50%;
 }
 
-#input0,#input1,#input2{
-	min-height:160px;
-	background:rgba(50, 205, 50, 0.5);
-}
+
 #outputOpt{
 	background: rgba(0,0,0,0.1);
 	border-radius:5px;
@@ -459,15 +525,17 @@ input[type=text],#wiki>span,.brad{
 	min-height:100px;
 }
 
-.wiki,.alignc{
-	text-align:center
-}
 
-.alignl{
+
+
+.alignl, #canvasMenu ~ div{
 	text-align:left
 }
 .alignr{
 	text-align:right
+}
+.alignc{
+	text-align: center
 }
 
 .floatl,.inputTip,#iTextMain > *:not(.clear),#Cond > *:not(.clear){
@@ -495,19 +563,9 @@ input[type=text],#wiki>span,.brad{
 .fixb{
 	bottom:0;
 }
-.inputTip[open] > summary{
-    border-bottom: dashed gainsboro;
-}
-.inputTip details[open] > summary{
-	background:gainsboro;
-}
-#iContent{
-	border-bottom: dashed 1px gainsboro;
-}
+
 #oHTML{
 	position: relative;
-	padding-left:20px;
-	padding-top:10px;
 	overflow:auto;
 }
 #oHTML > div.abs{
@@ -524,7 +582,7 @@ input[type=text],#wiki>span,.brad{
 	counter-increment: cnt1;
 }
 #input0Tip{
-	counter-reset:cnt0 0
+	counter-reset:cnt0 0;
 }
 #input0Tip .eg:not(.eg2):before{
 	content: "#" counter(cnt0) " ";
@@ -537,7 +595,7 @@ input[type=text],#wiki>span,.brad{
 	resize: none;
 	overflow:hidden;
 }
-.windex,.Clear,.task,th{
+.windex,.task,th{
 	cursor: pointer;
 }
 
@@ -549,116 +607,169 @@ input[type=text],#wiki>span,.brad{
 .opac a{
 	color:transparent;
 }
-.mathFont{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
-
+.mathFont,.hotk{font-family:STIXGeneral, 'DejaVu Serif', 'DejaVu Sans', Cambria, 'Cambria Math', Times, 'Lucida Sans Unicode', OpenSymbol, 'Standard Symbols L', serif}
 
 summary ~ details{
 	padding-left: 15px;
 }
 
-.inputTip,.ground,.ground > div{
-	margin:5px
+summary ~ details summary{
+	padding-left: 15px;
 }
 
+.inputTip{
+	margin:0 5px;
+}
+.plot, .resize,.inputTip,#input0Preview,#input0Tool{
+	overflow: auto;
+    resize: auto;
+}
 #cvsbg{
 	width:98%;
 	z-index:-1;
 }
-
-#navhead span{
-    color: white;
-    padding: 2px 4px;
-    margin:2px;
-    border-radius: 0 5px;
-    cursor: pointer;
-}
-
-.level,[name=tool] + span, .sechResult{
-	padding:2px 4px;
-	margin:2px;
-	color:white;
-	border-radius:5px;
+.Mele{
+	padding: 1px 10px;
+    margin: 2px 5px;
+	color:gray;
+	border-radius:15px;
 	cursor:pointer;
 	user-select: none;
 	display: inline-block;
+	font-size:1.1rem;
+	vertical-align: middle;
+	border: solid 1px gainsboro;
+}
+.subtabhead{
+	padding: 0 20px;
 }
 
+.subtabhead,.subhead{
+    color: white;
+    margin: 5px;
+    border-radius: 100%;
+	cursor: pointer;
+	font-size:1.3rem;
+	display: inline-block;
+	user-select:none;
+}
+
+
+.subhead :hover{
+	background: white;
+}
+.logo{
+    color: white;
+	border-radius: 50px;
+	background:limegreen;
+	padding:0 10px;
+	margin-top: 0;
+}
+
+.abscenter{
+	color: white;
+	background:limegreen;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+}
+.abscenter:after{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+#splash div{
+	display: inline-block;
+	border-radius: 100%;
+    border: solid 10px white;
+    padding: 20px;
+}
+
+.level,[name=tool] + span, .sechResult{
+	padding:2px 14px;
+	margin:2px 5px;
+	color:white;
+	border-radius:100%;
+	cursor:pointer;
+	user-select: none;
+	display: inline-block;
+	font-size:1.5rem;
+}
+
+
+select,input:not([type="file"]), .rem13{
+	font-size:1.3rem;
+}
+.rem3{
+	font-size:3rem;
+}
 .level:not(.seled):not(:hover){
 	opacity:.5
 }
 
-.subhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span{
+.subhead:not(.seled):not(:hover),.subtabhead:not(.seled),.fdetail:hover summary,[name=tool]:not(:checked) +span,#toolnav{
 	background:black;
 }
 .task:not(.seled),.taskname{
 	background:gray;
 }
 #subject .ground1 .level:not(.seled){
-	background:darkgray;
+	background:royalblue;;
 }
-.sechResult{
+#subject{
+	background: rgba(0,0,0,0.1);
+}
+
+.sechResult, .Mele:hover{
 	background: rgba(50, 205, 50, 0.6);
 }
 
 
-#solveGround .level:not(.seled),#solve+span:hover{
+.ground:nth-of-type(3n+2) .level:not(.seled),#toolnav label:nth-of-type(3n+1) span:hover{
 	background:blue;
 }
 
-#graphicGround .level:not(.seled),#graphic+span:hover{
+.ground:nth-of-type(3n+3) .level:not(.seled),#toolnav label:nth-of-type(3n+2) span:hover{
 	background:hotpink;
 }
 
-#showGround .level:not(.seled),#show+span:hover{
+.ground:nth-of-type(3n+1) .level:not(.seled),#toolnav label:nth-of-type(3n+3) span:hover{
 	background:blueviolet;
 }
 
-#wikiGround .level:not(.seled),#wiki+span:hover{
-	background:#993366;
+
+
+.ground:nth-of-type(3n+2) > div:not(.tasks):not(:empty){
+	border:5px outset blue;
 }
 
-#courseGround .level:not(.seled),#course+span:hover{
-	background:#996633;
+.ground:nth-of-type(3n+3) > div:not(.tasks):not(:empty){
+	border:5px outset hotpink;
 }
 
-#drillGround .level:not(.seled),#drill+span:hover{
-	background:#CCCC66;
+.ground:nth-of-type(3n+1) > div:not(.tasks):not(:empty){
+	border:5px outset blueviolet;
 }
 
-#topicGround .level:not(.seled),#topic+span:hover{
-	background:#009933;
-}
-
-#pitfallGround .level:not(.seled),#pitfall+span:hover{
-	background:#CC3366;
-}
-
-#unsolvedGround .level:not(.seled),#unsolved+span:hover{
-	background:#663300;
-}
-
-#thoughtGround .level:not(.seled),#thought+span:hover{
-	background:#6699CC;
-}
-
-#referGround .level:not(.seled),#refer+span:hover{
-	background:darkred;
-}
-
-.task.seled,.level.seled, [name=tool]:checked + span,.subhead.seled{
+[name=tool]:checked + span,.subhead.seled,.subtabhead.seled, #iContent input:not(.seled):not(.Clear):not(.tool):hover{
 	background:limegreen;
 }
-[name=tool]:checked + span{
-	border-radius: 0 5px;
-}
+
 #subject .ground0 .level:not(.seled){
-	background:darkblue;
+	background:royalblue;
 }
 
-textarea{
+textarea, #iContent input:not(.seled):not(.Clear):not(:hover), .katexvrule{
 	background:transparent;
 }
-.wiki > tbody > tr:nth-child(odd):not(:hover),#input0Preview{
+#input0Preview, #iTextPreview{
 	background: rgba(162,195,97,.1);
 }
 
@@ -671,19 +782,21 @@ textarea{
 .hotk{
     border-radius: 5px;
     padding: 0 6px;
-    background: lightgray;
+    background: darkgray;
     color:white;
     text-shadow: 1px 1px 1px #666;
 
 }
 .toolTip{
-	padding:0 5px;
+	padding:2px;
 	opacity:0;
 	background:limegreen;
 	color:white;
     border-radius:5px 0;
-
+	font-size:1.5rem;
 	animation: inf01 3s 1 ease-out;
+
+
 }
 @keyframes inf01 {
 	from {opacity:0}
@@ -695,11 +808,12 @@ textarea{
 
 
 
-.editorText {width:20%;height:60px}
 
 #donate div {margin:10px}
 #donaQR img{width:150px}
-#donaQR img:not(.alipayImg):not(.qqpayImg){margin:0 100px}
+#donaQR img{margin:0 10px}
+#donaWeixin img{width:350px}
+
 #Jiaohang{margin-right:50px;}
 .pay .jiaohang{
 	font-size: 12px;
@@ -742,25 +856,13 @@ textarea{
 
 .tasks{
     background: rgba(0,0,0,.1);
-    border-radius: 5px;
+	border-radius: 5px;
+	margin: 5px;
 }
 img{
 	cursor: pointer;
 }
 
-.mathloader{
-	width:100%
-}
-
-#cvsbg{
-	width:100%;
-	height:100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index:-1;
-
-}
 
 
 @font-face {
@@ -772,12 +874,20 @@ img{
        url(fonts/MaterialIcons-Regular.woff2) format('woff2');
 }
 
+.Clear{
+	color:gray
+}
+
 .mi{
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
- /* font-size: 1.5rem;   Preferred icon size 24px;*/
- /* display: inline-block;*/
+  font-size: 2rem;
+  margin:1px;
+  border-radius: 100%;
+  border:solid transparent 1px;
+
+  display: inline-block;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -800,54 +910,51 @@ img{
     display: inline-block;
 	content:attr(mi);
 }
+.mi:not(.Clear):not(.Del):hover, th.bds:hover, summary{
+
+	color:limegreen;
+}
+
 
 #panel div > span.toggle{
 	vertical-align: middle;
 	font-weight:bold;
 }
-#panel div > .mi-span.toggle,#menu .toggle{
+#panel div > .mi-span.toggle, .mi.toggle{
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, .5);
 	padding-right:2px;
 }
 
-#menu i{
-	font-size:26px;
-}
-#menu{
-	margin-bottom:5px;
-    float: right;
-    padding-right: 5px;
+ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:a 0;}
+ol li:before {counter-increment:a;content:counters(a,".")" ";}
 
-}
-#menu .toggle[title],#nav{
-	padding: 4px;
-}
-
-#menu .toggle{
-	background:yellow
-}
+#TOCcontents ol {padding:0 0 0 20px;margin:0;list-style:none;counter-reset:b 0;}
+#TOCcontents ol li:before {counter-increment:b;content:counters(b,".")". ";padding-right: 5px}
 
 
-input[type="number"]{
-	width: 40px;
+#menu {
+    position: absolute;
+	top: 0.3rem;
+    right: 5px;
+    z-index: 90001;
 }
+
+.mi.toggle, .tool:hover{
+	background:yellow;
+	color: black;
+}
+
+
+
 input[len="2"]{
-	width: 80px;
+	width:5rem;
 }
 
-#nav{
-	max-width:75%
-}
+
 .mi-span{
 	cursor:pointer;
 }
-/*
-#menu .toggle:after{
-	content:attr(title);
-	padding:2px;
-	font-family: cursive;
-}
-*/
+
 #panel div > .mi-span.toggle + span{
 	font-family: cursive;
 }
@@ -863,4 +970,9 @@ input[len="2"]{
 }
 .multinput{
 	-webkit-appearance:radio
+}
+
+@keyframes hue {
+    from { filter: hue-rotate(0deg); }
+    to   { filter: hue-rotate(360deg); }
 }

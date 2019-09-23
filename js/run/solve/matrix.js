@@ -13,7 +13,7 @@ solve['matrix']=function(inputValue, uriA){
 */
 	
 //Display
-console.log(inputValue,uriA);
+consolelog(inputValue,uriA);
 	if(sel(uriA,'A')){
 		rS=rS.concat(concat(strA,
 			Arrf(function(t){
@@ -600,7 +600,7 @@ console.log(inputValue,uriA);
 		rS=rS.concat(Arrf(function(t){
 			var hasP=/&/.test(t),ij=hasP?t.replace(/.+&/,'').split(','):'', M=MfS(t), A=Mtrx.opr1('特征值',M,ij,1);
 
-			return A[1]
+			return A[1].join(kbr)
 		},VA));
 	}
 	if(sel(uriA,'Singular Polynomial')){
@@ -1688,6 +1688,6 @@ https://zhidao.baidu.com/question/750762700228964772.html
 
 	}
 
-	console.log(rS);
+	consolelog(rS);
 	return rS;
 };

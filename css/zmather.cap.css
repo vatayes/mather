@@ -4,46 +4,83 @@
 
 #caps{
     position: absolute;
-    top: 0px;
-    z-index: -1;
+	top: 0px;
+	z-index: -1;
 }
 
 #tileToolCap img{
     width: 16px;
 }
 
-#tileToolCap svg[id]{width:30px;height:30px}
+#tileToolCap svg[id]{height:2rem}
 
+@media screen and (max-width:800px){
+	
+	#tileToolCap svg[id]{width:3rem;}
+	#Crop {display: none}
+}
+@media screen and (min-width:800px){
+	#tileToolCap svg[id]{width:2rem;}
+}
 #tileFontCenter{width:40px}
 
 #strkDash{width:78px}
 #font{width:100px}
 
 #path_CapScr{width:55%}
+#SvgOpt textarea{width:85%}
 
-#copyDir,#eraserDir,#svgTEXT select,#svgTool textarea{font-size:18px}
-#svgTool > div{padding:5px}
+#svgToolOpt{
+	position: absolute;
+	top: 5.15rem;
+	z-index: 99999999;
+}
+
+#svgToolOpt.Narrow{
+    right: 4.39rem;
+}
+#svgToolOpt:not(.Narrow){
+    right: 1rem;
+}
+
+.day #svgToolOpt{
+    background: honeydew;
+}
+
+.night #svgToolOpt{
+    background: darkslategray;
+}
+
+#svgToolOpt > *{
+	padding:5px;
+}
+
 #Weib{margin:5px}
-#fontCSS span{margin:10px}
-
-#svgShape, #svgCssTransform > div{margin:10px 0;border-radius: 5px;}
+#fontCSS span, #CssFilter div{margin:10px}
+#tileToolCap{margin:0 10px}
+#svgShape, #svgCssTransform > div{margin:2px 0;border-radius: 5px;}
 
 #fontCSS span:not(.toggle), #CssRotate input[type=radio]:not(:checked) ~ img, #CssRotate input[type=radio]:not(:checked) ~ #CssRotate6 img,  #CssRotate6 img:not(.toggle):not(:hover){filter:grayscale(1);opacity:.4}
 
-#fontCSS span,#tileToolCap svg,#night{cursor:pointer}
+#fontCSS span,#tileToolCap svg{cursor:pointer}
 #tileTool{
-	border-left: dashed white 1px;
 	text-align:center;
-	right:12px;
-	position:fixed;
-	overflow-x:hidden;
 	user-select: none;
-	top:30px;
-
+	float: right;
 }
 
-#svgShape svg{border-radius:5px}
-#tileToolCap,svg:hover,.caplatex:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
+#svgShape svg{
+	border-radius:5px;
+    vertical-align: middle;
+    margin:1px;
+
+}
+#svgTog,#svgTool{
+
+	background:lightslategray
+}
+
+#tileToolCap,svg:hover,.capfromTextarea:hover{border-radius:5px; background-color:rgba(0,0,0,0.1); box-shadow: 3px 3px 5px rgba(0, 0, 0, .5)}
 
 
 #tileTool:not([for]):after{
@@ -58,9 +95,18 @@
 	height:20px;
 	z-index: 1;
 }
-#Caps textarea:hover{resize:auto;overflow:auto}
+
+#svgShape{
+	overflow-y: auto;
+	max-height: 30rem;
+}
+
+#Caps textarea:hover, #svgShapes{resize:auto;overflow:auto}
 #Caps textarea{resize:none; overflow:hidden; background-color:transparent}
 
+#tileToolCap textarea{
+	width:98%
+}
 #capctxTXT div,#fxTXT div{
 	max-height:100px;
 	overflow-x: hidden;
@@ -78,15 +124,6 @@
 }
 
 
-#svgTEXTLaTeX{
-	position: fixed;
-    right: 25%;
-    z-index: 400000;
-    top: 0;
-    
-   
-}
-
 #Tile > table td{padding:0}
 
 #Tile table {
@@ -97,15 +134,14 @@ body {
     overflow-x: hidden;
 }
 
-input[type=number] {
-    width: 50px;
-}
 input:not([readonly]), select{
     vertical-align: middle;
 }
 #COLOR summary input[readonly] {
-    margin: 2px;
-    width: 16px;
+	margin: 4px;
+    width: 1.5rem;
+    height: 1.5rem;
+	text-align: center;
 }
 #color1{background:skyblue}
 #color2{background:pink}
@@ -113,7 +149,7 @@ input:not([readonly]), select{
 #color4{background:firebrick}
 
 #CssRotate6 img {
-    margin: 0 2px;
+    margin: 0 1rem;
 }
 
 .blur{filter:blur(1px)}
@@ -136,5 +172,3 @@ input:not([readonly]), select{
 .rotate1,#rotate1{transform:rotate(90deg)}
 
 .small{transform:scale(.9)}
-
-#TextLaTeX{background-color:rgba(50, 205, 50,0.5);color:black}

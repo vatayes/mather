@@ -1,6 +1,6 @@
 
 .Symboli .td:not(:hover),.Symboli td:not(:hover){
-	color:blue
+	color:cadetblue
 }
 
 .Fn .td{
@@ -8,25 +8,32 @@
 }
 
 
-#iTextLaTeXBox{
+#TextLaTeXBox{
 	position: relative;
     z-index: 30000;
-	margin-top: 28px;
 }
 
+.TextLaTeXBox > div{
+	border: outset yellow 1px;
+}
 
 .sbsTbl .td{
 	float:left;
-	padding:2px 10px;
 	margin:2px;
 	overflow:hidden;
 }
 
 
-.sbsTbl td{
-	font: normal 1em KaTeX_Main,Times New Roman,serif;
+.sbsTbl td, #iTextMain input{
+	font: normal 1.3rem KaTeX_Main,Times New Roman,serif;
+}
+.sbsTbl td[title^="\\n"]{
+	font: normal 1.3rem serif;
 }
 
+.Symboli td{
+	padding: 10px
+}
 .Symboli_ {
     background-color: palegoldenrod;
 }
@@ -47,9 +54,14 @@
 .sbsTbl .td, .sbsTbl td:not(:empty){
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 5px;
 	text-align: center;
 	cursor: pointer;
+	padding:10px;
+	position: relative;
+}
+
+.sbsTbl .td[title]:not(.Fns), .sbsTbl td[title]{
+	padding:1.2rem;
 }
 
 .sbsTbl .td:not(:empty):active,.sbsTbl td:not(:empty):active{
@@ -62,33 +74,67 @@
 }
 #sbs td:not(:empty){
 	min-width:30px;
-	font-size: 22px;
+	font-size: 1.5rem;
+}
+.TextLaTeXBox td:not(:empty):after,.TextLaTeXBox .td:not(:empty):not(.Fns):after {
+    content: attr(title);
+    display: block;
+    font-size: .8rem;
+	color: gray;
+	position: absolute;
+    left: 2px;
+	right: 2px;
+	overflow: hidden;
+    max-height: 1.2rem;
 }
 
 .sbsTbl:not(.sbsiTbl) tr:nth-child(odd), .Symboli:not(.Symboli_){
 	background: rgba(162,195,97,.1);
 }
 
-.seled:not(div){
-	border-color:gray;
+.seled:not(div):not(.subhead):not(.subtabhead):not(textarea){
 	background: yellow;
+	color: gray;
+	border-radius: 100%;
 }
 
-.bdb{
-	border-bottom: outset black 1px;
+
+.snippetName{
+	border-bottom:solid 1px gainsboro;
+	word-break: break-all;
 }
 
-blockquote{
-    padding:0 10px;
-    border-left: solid 6px #ff5400;
-    margin-left: 0px;
-    background-color: rgba(242,97,9,.1);
-    border-radius: 10px;
+#input0,#input1{
+	min-height:200px;
 }
-code, pre{
-    background: rgba(0,0,0,0.1);
-    border-radius: 5px;
-    padding:2px
+#input0Type,#output0Type{
+	max-width:6rem;
+}
+
+textarea.seled,.snippet.seled{
+	border:solid 1px yellow;
+	background:rgba(50, 205, 50, 0.5);
+}
+
+.sbsiTbl tr.Symboli:not(.Symboli_):after {
+    content: attr(data-ii);
+    text-shadow: 1px 1px 1px #666;
+	color: white;
+}
+
+.snippet:before {
+	content: counter(cnt) ". ";
+    counter-increment: cnt;
+    text-shadow: 1px 1px 1px #666;
+	color: white;
+}
+.snippet:not(.seled):after {
+	content: attr(data-type);
+    text-shadow: 1px 1px 1px #666;
+	color: white;
+}
+#snippets{
+	counter-reset:cnt 0
 }
 .eg:hover{
 	text-decoration: underline;
